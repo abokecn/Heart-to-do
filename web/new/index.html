@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能待办清单</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✅</text></svg>">
+    <script src="lang.js"></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 data-translate="title">待办事项</h1>
+            <div class="toolbar">
+                <button class="btn lang-btn" onclick="toggleLanguage()" data-translate="language">English</button>
+                <button class="btn export-btn" onclick="exportData()" data-translate="export">导出数据</button>
+                <input type="file" id="importFile" hidden accept=".json">
+                <button class="btn import-btn" onclick="importData()" data-translate="import">导入数据</button>
+            </div>
+        </div>
+
+        <div class="view-controls">
+            <button class="view-btn active" data-view="list" data-translate="listView">列表视图</button>
+            <button class="view-btn" data-view="calendar" data-translate="calendarView">日历视图</button>
+        </div>
+
+        <div class="main-content">
+            <div class="input-section">
+                <input type="text" id="taskInput" placeholder="添加新任务..." data-translate="addPlaceholder">
+                <div class="tag-selector">
+                    <button type="button" class="tag-btn" data-tag="work">🏢 <span data-translate="tagWork">工作</span></button>
+                    <button type="button" class="tag-btn" data-tag="life">🏠 <span data-translate="tagLife">生活</span></button>
+                    <button type="button" class="tag-btn" data-tag="study">📚 <span data-translate="tagStudy">学习</span></button>
+                    <input type="text" id="customTag" placeholder="自定义标签" data-translate="customTag">
+                </div>
+                <div class="date-input">
+                    <input type="datetime-local" id="dueDate">
+                    <button class="btn add-btn" onclick="addTask()" data-translate="addButton">添加任务</button>
+                </div>
+            </div>
+
+            <div class="stats" data-translate="stats">
+                剩余任务: <span id="remaining">0</span> | 
+                已完成: <span id="completed">0</span>
+            </div>
+
+            <div id="listView" class="view active">
+                <ul class="task-list"></ul>
+            </div>
+
+            <div id="calendarView" class="view calendar-view"></div>
+        </div>
+
+        <div id="message" class="message"></div>
+    </div>
+</body>
+</html>
