@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✅</text></svg>">
+    <script src="lang.js"></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 data-translate="title"></h1>
+            <div class="toolbar">
+                <button class="btn" onclick="toggleLanguage()" data-translate="language"></button>
+                <button class="btn export-btn" onclick="exportData()" data-translate="export"></button>
+                <input type="file" id="importFile" hidden accept=".json" onchange="importData(event)">
+                <button class="btn import-btn" onclick="document.getElementById('importFile').click()" data-translate="import"></button>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="todoInput" placeholder="添加新任务..." onkeypress="handleEnter(event)">
+            <button class="btn add-btn" onclick="addTodo()" data-translate="addButton"></button>
+        </div>
+
+        <div class="stats">
+            <span data-translate="remaining"></span>: <span id="remaining">0</span> | 
+            <span data-translate="completed"></span>: <span id="completed">0</span>
+        </div>
+
+        <ul class="todo-list" id="todoList"></ul>
+        
+        <div id="message" class="message"></div>
+    </div>
+</body>
+</html>
